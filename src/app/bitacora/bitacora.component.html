@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-content">
+                <form #bitacoraForm="ngForm" (ngSubmit)="addBitacora(bitacoraForm)">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="bitacoraService.selectedBitacora._id">
+                    <div class="row">
+                            <div class="input-field col-md-12">
+                                <input type="text" name="name" #name="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.name"
+                                    placeholder="Enter your Name"
+                                >
+                            </div>
+                            <div class="input-field col-md-s12">
+                                <input type="text" name="area" #area="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.area"
+                                    placeholder="Enter your area"
+                                >
+                            </div>
+                            <div class="input-field col-md-s12">
+                                <input type="text" name="posicion" #posicion="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.posicion"
+                                    placeholder="Enter your posicion">
+                            </div>
+                            <div class="input-field col s6 m4 l4">
+                                <label for="turno">TURNO</label>
+                                <select id="turno" name="miselect" [(ngModel)]="seleccionado" class="validate">
+                                    <option [value]="item" *ngFor="let item of lista">{{item}}</option>
+                                </select>
+                                <span>ingrese el valor </span>
+                                <span> 
+                                {{seleccionado}}
+                                </span>
+                            </div>    
+                    </div>
+                    <div class="card-action">
+                            <div class="input-field-append">
+                                <button class="btn-primary btn">Guardar</button>
+                                <button class="btn-primary btn" (click)="resetForm(bitacoraForm)">Limpiar</button>
+                            </div>
+                    </div>
+                </form>
+                </div>
+            </div> 
+        </div>
+
+        <div class="col-md-4">
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Area</th>
+                    <th>Posicion</th>
+                    <th>Turno</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let bitacora of bitacoraService.bitacoras">
+                    <td>{{ bitacora.name }}</td>
+                    <td>{{ bitacora.area }}</td>
+                    <td>{{ bitacora.posicion }}</td>
+                    <td>{{ bitacora.turno }}</td>
+                    <td>
+                        <a (click)="editBitacora(bitacora)" style="cursor:pointer">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a (click)="deleteBitacora(bitacora._id)" style="cursor:pointer">
+                            <i class="material-icons uk-icon-hand-pointer-o">delete</i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>      
+    </div>
+</div>

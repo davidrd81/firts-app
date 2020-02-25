@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            INGRESA
+          </div>
+          <div class="form-group">
+           
+          </div>
+          <div>
+            <button (click)="AddOrEdit()" class="btn btn-primary">
+              Submit
+            </button>
+          </div>  
+        </div>
+      </div>
+        <div class="input-field col s6 m4 l4">
+            <label for="turno">TURNO</label>
+              <select id="turno" name="miselect" [(ngModel)]="seleccionado" class="validate">
+                  <option [value]="item" *ngFor="let item of lista">{{item}}</option>
+              </select>
+            <span>ingrese el valor </span>
+            <span> 
+            {{seleccionado}}
+            </span>
+        </div>
+    </div>
+  </div>
+</div>
