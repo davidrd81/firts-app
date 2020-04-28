@@ -10,7 +10,7 @@ import { Bitacora } from '../models/bitacora';
 export class BitacoraService {
   selectedBitacora: Bitacora;
   bitacoras: Bitacora[];
-  readonly URL_API = 'http://localhost:3000/api/bitacoras';
+  readonly URL_API = 'http://localhost:5000/api/bitacoras';
 
   constructor(private http: HttpClient) {
     this.selectedBitacora = new Bitacora();
@@ -18,6 +18,10 @@ export class BitacoraService {
 
   getBitacora() {
     return this.http.get(this.URL_API);
+  }
+
+  getBitacorabyId(_id: string) {
+    return this.http.get<Bitacora>(`${this.URL_API}/${_id}`);
   }
 
   // tslint:disable-next-line: no-shadowed-variable

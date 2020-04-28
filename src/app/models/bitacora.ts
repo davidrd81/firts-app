@@ -1,14 +1,14 @@
 export class Bitacora {
 
     // tslint:disable-next-line: variable-name
-    constructor( id = 0, _id = '', name = '', usuario = '', turno = '', area = '', posicion = '' ) {
+    constructor( id = 0, _id = '', name = '', usuario = '', turno = '', area = '', position = '' ) {
         this.id = id;
         this._id = _id;
         this.name =  name;
         this.usuario = usuario;
         this.turno = turno;
         this.area = area;
-        this.posicion = posicion;
+        this.position = position;
     }
 
     id: number;
@@ -17,5 +17,5 @@ export class Bitacora {
     usuario: string;
     turno: string;
     area: string;
-    posicion: string;
+    position: string;
 }

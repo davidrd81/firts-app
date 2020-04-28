@@ -13,13 +13,15 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { BitacoraComponent } from './bitacora/bitacora.component';
 import { BitacoraService } from './services/bitacora.service';
+import { BitacoraPopupComponent } from './preview/bitacora-popup/bitacora-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    BitacoraComponent
+    BitacoraComponent,
+    BitacoraPopupComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@ const BitacoraSchema = new Schema({
         usuario: {type: String},
         turno: {type: String},
         area: {type: String},
-        posicion: {type: String},
+        position: {type: String},
 });
 
 module.exports = mongoose.model('bitacora', BitacoraSchema);

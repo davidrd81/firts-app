@@ -1,9 +1,10 @@
+
 <div class="row">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-content">
-                <form #bitacoraForm="ngForm" (ngSubmit)="addBitacora(bitacoraForm)">
+                <form #bitacoraForm="ngForm" (ngSubmit)="updateBitacora(bitacoraForm)">
                     <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="bitacoraService.selectedBitacora._id">
                     <div class="row">
                             <div class="input-field col-md-12">
@@ -31,41 +32,11 @@
                     <div class="card-action">
                             <div class="input-field-append">
                                 <button class="btn-primary btn">Guardar</button>
-                                <button class="btn-primary btn" (click)="resetForm(bitacoraForm)">Limpiar</button>
                             </div>
                     </div>
                 </form>
                 </div>
             </div> 
-        </div>
-
-        <div class="col-md-4">
-            <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Area</th>
-                    <th>posición</th>
-                    <th>Turno</th>
-                </thead>
-                <tbody>
-                <tr *ngFor="let bitacora of bitacoraService.bitacoras">
-                    <td>{{ bitacora.name }}</td>
-                    <td>{{ bitacora.area }}</td>
-                    <td>{{ bitacora.position }}</td>
-                    <td>{{ bitacora.turno }}</td>
-                    <td>
-                        <a (click)="updateBitacora(bitacora._id)" style="cursor:pointer">
-                            <i class="material-icons">edit</i>
-                        </a>
-                    </td>
-                    <td>
-                        <a (click)="deleteBitacora(bitacora._id)" style="cursor:pointer">
-                            <i class="material-icons uk-icon-hand-pointer-o">delete</i>
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
         </div>      
     </div>
 </div>
