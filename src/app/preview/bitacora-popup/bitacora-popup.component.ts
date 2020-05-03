@@ -19,7 +19,7 @@ declare let M: any;
   selector: 'app-bitacora-popup',
   templateUrl: './bitacora-popup.component.html',
   styleUrls: ['./bitacora-popup.component.css'],
-  providers: [BitacoraService, TurnoService]
+  providers: [BitacoraService, BitacoraComponent, TurnoService]
 })
 export class BitacoraPopupComponent implements OnInit {
   @Input() item: any;
@@ -39,6 +39,7 @@ export class BitacoraPopupComponent implements OnInit {
     private activateroute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    @Host() private _app: BitacoraComponent,
     ) {
       this.bitacora = new Bitacora();
       console.log(this._app);

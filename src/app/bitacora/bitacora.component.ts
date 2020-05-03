@@ -38,7 +38,7 @@ export class BitacoraComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(BitacoraPopupComponent);
+    this.dialog.open(HomeComponent);
   }
 
 /*  addBitacora(form?: NgForm) {
