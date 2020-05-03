@@ -15,6 +15,7 @@ app.use(cors({origin: 'http://localhost:4200'}));
 
 //Routes
 app.use('/api/bitacoras', require('./routes/bitacora.routes'));
+app.use('/api/turnos', require('./routes/turnos.routes'));
 
 // Starting server
 app.listen(app.get('port'), () => {

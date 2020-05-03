@@ -1,42 +1,47 @@
-
+<div class="row" *ngIf="!(item || bitacora) ; else maincontent">
+    <h1>Loding...</h1>
+</div>
+<ng-template #maincontent>
 <div class="row">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-content">
-                <form #bitacoraForm="ngForm" (ngSubmit)="updateBitacora(bitacoraForm)">
-                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="bitacoraService.selectedBitacora._id">
+                <form [formGroup] = "bitacoraForm" (ngSubmit)="updateBitacora()">
                     <div class="row">
                             <div class="input-field col-md-12">
-                                <input type="text" name="name" #name="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.name"
-                                    placeholder="Enter your Name"
+                                <input type="text" formControlName = "name" placeholder="Enter your Name">
+                            </div>
+                            <div class="input-field col-md-12">
+                                <input type="text" formControlName = "usuario" placeholder="Enter your nickname">
+                            </div>
+                            <div class="input-field col-md-s12">
+                                <input type="text" formControlName ="area" placeholder="Enter your area"
                                 >
                             </div>
                             <div class="input-field col-md-s12">
-                                <input type="text" name="area" #area="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.area"
-                                    placeholder="Enter your area"
-                                >
-                            </div>
-                            <div class="input-field col-md-s12">
-                                <input type="text" name="position" #position="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.position"
-                                    placeholder="Enter your posicion">
+                                <input type="text" formControlName ="position" placeholder="Enter your posicion">
                             </div>
                             <div class="input-field col s6 m4 l4">
                                 <label for="turno">TURNO</label>
-                                <select #turno="ngModel" name="turno" [(ngModel)]="bitacoraService.selectedBitacora.turno" class="validate">
-                                    <option [value]="item" *ngFor="let item of lista">{{item}}</option>
+                                <select formControlName="turno"  class="validate">
+                                    <option [value]="turno.turno" *ngFor="let turno of turnoservice.turno">{{ turno.turno }}</option>
                                 </select>
                                 <span>ingrese el valor </span>
                             </div>    
                     </div>
                     <div class="card-action">
                             <div class="input-field-append">
-                                <button class="btn-primary btn">Guardar</button>
+                                <button type="submit" class="btn-primary btn" [disabled]="!bitacoraForm.valid" >Guardar</button>
                             </div>
                     </div>
                 </form>
                 </div>
+                <p>
+                    Form Status: {{ bitacoraForm.status }}
+                </p>
             </div> 
         </div>      
     </div>
 </div>
+</ng-template>

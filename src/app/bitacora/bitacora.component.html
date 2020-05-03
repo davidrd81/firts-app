@@ -1,71 +1,56 @@
-<div class="row">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-content">
-                <form #bitacoraForm="ngForm" (ngSubmit)="addBitacora(bitacoraForm)">
-                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="bitacoraService.selectedBitacora._id">
-                    <div class="row">
-                            <div class="input-field col-md-12">
-                                <input type="text" name="name" #name="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.name"
-                                    placeholder="Enter your Name"
-                                >
-                            </div>
-                            <div class="input-field col-md-s12">
-                                <input type="text" name="area" #area="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.area"
-                                    placeholder="Enter your area"
-                                >
-                            </div>
-                            <div class="input-field col-md-s12">
-                                <input type="text" name="position" #position="ngModel" [(ngModel)]="bitacoraService.selectedBitacora.position"
-                                    placeholder="Enter your posicion">
-                            </div>
-                            <div class="input-field col s6 m4 l4">
-                                <label for="turno">TURNO</label>
-                                <select #turno="ngModel" name="turno" [(ngModel)]="bitacoraService.selectedBitacora.turno" class="validate">
-                                    <option [value]="item" *ngFor="let item of lista">{{item}}</option>
-                                </select>
-                                <span>ingrese el valor </span>
-                            </div>    
-                    </div>
-                    <div class="card-action">
-                            <div class="input-field-append">
-                                <button class="btn-primary btn">Guardar</button>
-                                <button class="btn-primary btn" (click)="resetForm(bitacoraForm)">Limpiar</button>
-                            </div>
-                    </div>
-                </form>
-                </div>
-            </div> 
-        </div>
-
-        <div class="col-md-4">
-            <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Area</th>
-                    <th>posición</th>
-                    <th>Turno</th>
-                </thead>
+<ng-container class="row" *ngIf="!ActT; else RegBinnacle">
+    <button (click)="r = addBitacora(salida); ActT = r.ActT; crear = r.crear">Registrar operador</button>
+</ng-container>
+<ng-template #RegBinnacle>
+    <app-bitacora-popup [item]="crear"></app-bitacora-popup>
+</ng-template>
+<ol>
+    <li>
+      <button mat-raised-button (click)="openDialog()">Pick one</button>
+    </li>
+  </ol>
+<div class="col-md-8">
+            <table mat-table [dataSource]="bitacoraService.bitacoras">
+                <ng-container matColumnDef="Name">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let bitacora">{{ bitacora.name }}</td>
+                </ng-container>
+                <ng-container matColumnDef="Usuario">
+                    <th mat-header-cell *matHeaderCellDef>Usuario</th>
+                    <td mat-cell *matCellDef="let bitacora">{{ bitacora.usuario }}</td>
+                </ng-container>
+                <ng-container matColumnDef="Area">
+                    <th mat-header-cell *matHeaderCellDef>Area</th>
+                    <td mat-cell *matCellDef="let bitacora">{{ bitacora.area }}</td>
+                </ng-container>
+                <ng-container matColumnDef="posición">
+                    <th mat-header-cell *matHeaderCellDef>posición</th>
+                    <td mat-cell *matCellDef="let bitacora">{{ bitacora.position }}</td>
+                </ng-container>
+                <ng-container matColumnDef="Turno">
+                    <th mat-header-cell *matHeaderCellDef>Turno</th>
+                    <td mat-cell *matCellDef="let bitacora">{{ bitacora.turno }}</td>
+                </ng-container>
+                    <ng-container matColumnDef="bottom_edit">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let bitacora">
+                            <a (click)="updateBitacora(bitacora._id)" style="cursor:pointer">
+                                <i class="material-icons">edit</i>
+                            </a>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="bottom_delete">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let bitacora">
+                            <a (click)="deleteBitacora(bitacora._id)" style="cursor:pointer">
+                                <i class="material-icons uk-icon-hand-pointer-o">delete</i>
+                            </a>
+                        </td> 
+                    </ng-container>
                 <tbody>
-                <tr *ngFor="let bitacora of bitacoraService.bitacoras">
-                    <td>{{ bitacora.name }}</td>
-                    <td>{{ bitacora.area }}</td>
-                    <td>{{ bitacora.position }}</td>
-                    <td>{{ bitacora.turno }}</td>
-                    <td>
-                        <a (click)="updateBitacora(bitacora._id)" style="cursor:pointer">
-                            <i class="material-icons">edit</i>
-                        </a>
-                    </td>
-                    <td>
-                        <a (click)="deleteBitacora(bitacora._id)" style="cursor:pointer">
-                            <i class="material-icons uk-icon-hand-pointer-o">delete</i>
-                        </a>
-                    </td>
-                </tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </tbody>
             </table>
-        </div>      
-    </div>
-</div>
+</div>      
+

@@ -7,25 +7,24 @@
             INGRESA
           </div>
           <div class="form-group">
-           
+            <mat-form-field appearance="fill">
+              <mat-label>Input</mat-label>
+              <input matInput>
+            </mat-form-field>
           </div>
           <div>
-            <button (click)="AddOrEdit()" class="btn btn-primary">
+            <button mat-flat-button color="primary">
               Submit
             </button>
           </div>  
         </div>
       </div>
-        <div class="input-field col s6 m4 l4">
-            <label for="turno">TURNO</label>
-              <select id="turno" name="miselect" [(ngModel)]="seleccionado" class="validate">
-                  <option [value]="item" *ngFor="let item of lista">{{item}}</option>
-              </select>
-            <span>ingrese el valor </span>
-            <span> 
-            {{seleccionado}}
-            </span>
-        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>TURNO</mat-label>
+              <mat-select>
+                  <mat-option  *ngFor="let turno of turnos" [value]="turno.viewValue">{{turno.viewValue}}</mat-option>
+              </mat-select>
+        </mat-form-field>
     </div>
   </div>
 </div>

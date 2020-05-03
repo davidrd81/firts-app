@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { BitacoraService } from '../services/bitacora.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder } from '@angular/forms';
 import { Bitacora } from '../models/bitacora';
+import { HomeComponent } from '../home/home.component';
+import { BitacoraPopupComponent } from '../preview/bitacora-popup/bitacora-popup.component';
 import { Router } from '@angular/router';
+import {MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
 
 
 declare let M: any;
@@ -14,14 +18,30 @@ declare let M: any;
   providers: [BitacoraService]
 })
 export class BitacoraComponent implements OnInit {
-  lista: string [] = ['06:00-14:00', '14:00-22:00', '22:00-06:00', '06:00-18:00', '18:00-06:00'];
-  constructor(public bitacoraService: BitacoraService, private router: Router ) { }
+  // tabla
+  displayedColumns: string[] = ['Name', 'Usuario', 'Area', 'posición', 'Turno', 'bottom_edit', 'bottom_delete'];
+  dataSource: Bitacora;
+
+  crear: any;
+  salida: any;
+  r: any;
+  ActT = false;
+  constructor(
+    public bitacoraService: BitacoraService,
+    private router: Router,
+    private formbuilder: FormBuilder,
+    private dialog: MatDialog,
+    ) { }
+
   ngOnInit() {
     this.getBitacora();
-    console.log(this.bitacoraService.bitacoras);
   }
 
-  addBitacora(form?: NgForm) {
+  openDialog() {
+    this.dialog.open(BitacoraPopupComponent);
+  }
+
+/*  addBitacora(form?: NgForm) {
     if (form.value._id) {
       this.bitacoraService.putBitacora(form.value)
       .subscribe(res => {console.log(res);
@@ -36,6 +56,11 @@ export class BitacoraComponent implements OnInit {
         });
         }
   }
+  */
+ addBitacora(salida) {
+   salida = {ActT: true, crear: true};
+   return( salida );
+}
 
   getBitacora() {
     this.bitacoraService.getBitacora()

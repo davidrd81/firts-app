@@ -10,6 +10,7 @@ bitacoraCtrl.getBitacoras = async (req, res) => {
 bitacoraCtrl.createBitacora = async (req, res) => {
       const newbitacora = new Bitacora({
         name: req.body.name,
+        usuario: req.body.usuario,
         position: req.body.position,
         area: req.body.area,
         turno: req.body.turno
